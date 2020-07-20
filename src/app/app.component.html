@@ -1,0 +1,12 @@
+<div class="example">
+  <h2>Checkbox:</h2>
+  <app-checkbox (stateChanged)="log($event)">Default state</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'checked'">State: checked</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'intermediate'">State: intermediate</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'unchecked'">State: unchecked</app-checkbox><br>
+  <br>
+  <app-checkbox (stateChanged)="log($event)" [disabled]="true">Default state (disabled)</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'checked'" [disabled]="true">State: checked (disabled)</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'intermediate'" [disabled]="true">State: intermediate (disabled)</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [state]="'unchecked'" [disabled]="true">State: unchecked (disabled)</app-checkbox>
+</div>
