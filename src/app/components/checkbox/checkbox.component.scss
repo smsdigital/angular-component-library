@@ -8,10 +8,13 @@
     align-items: center;
 
     div {
-        display: inline-block;
+        /*display: inline-block;*/
         height: 1rem;
         width: 1rem;
         margin-right: 0.125rem;
+        justify-content: center;
+        display: inline-flex;
+        align-items: center;
     }
 
     span:empty {
@@ -33,6 +36,10 @@
         span {
             color: rgb(22, 22, 22);
         }
+
+        &:not(.unchecked) div {
+            background-color: rgb(22, 22, 22);
+        }
     }
 
     &.disabled {
@@ -43,13 +50,35 @@
         span {
             color: rgb(198, 198, 198);
         }
+
+        &:not(.unchecked) div {
+            background-color: rgb(198, 198, 198);
+        }
     }
 
     &.intermediate div {
-        background-color: purple;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0.5rem;
+            height: 2px;
+            background-color: white;
+        }
     }
     &.checked div {
-        background-color: red;
+        
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: .5625rem;
+            height: .3125rem;
+            border-left: 2px solid white;
+            border-bottom: 2px solid white;
+            transform: rotate(-45deg) translateX(1px) translateY(-1px);
+        }
     }
     
 }
