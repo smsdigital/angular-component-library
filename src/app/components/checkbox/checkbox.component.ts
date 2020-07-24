@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, Input, HostListener, HostBinding, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, Input, HostListener, HostBinding, OnInit, OnDestroy } from '@angular/core';
 
 export type CheckboxState = 'checked' | 'intermediate' | 'unchecked';
 
@@ -7,9 +7,10 @@ export type CheckboxState = 'checked' | 'intermediate' | 'unchecked';
   templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss']
 })
-export class CheckboxComponent implements OnInit {
+export class CheckboxComponent implements OnInit, OnDestroy {
 
   private isInitialized: boolean;
+  private childCheckboxes: this[];
 
   @Output('stateChanged')
   stateChanged: EventEmitter<CheckboxState>;
@@ -53,8 +54,12 @@ export class CheckboxComponent implements OnInit {
     return this.state === 'intermediate';
   }
 
+  @Input('parent')
+  parent: this;
+
   constructor() {
     this.disabled = false;
+    this.childCheckboxes = [];
     this.state = 'unchecked';
     this.isInitialized = false;
     this.stateChanged = new EventEmitter<CheckboxState>();
@@ -62,10 +67,61 @@ export class CheckboxComponent implements OnInit {
 
   ngOnInit() {
     this.isInitialized = true;
+    this.registerSelfOnParent();
+  }
+
+  ngOnDestroy() {
+    this.unregisterSelfOnParent();
+  }
+
+  registerSelfOnParent(): void {
+    if (this.parent) {
+      this.parent.registerChild(this);
+    }
+  }
+
+  unregisterSelfOnParent(): void {
+    if (this.parent) {
+      this.parent.unregisterChild(this);
+    }
+  }
+
+  registerChild(checkbox: this): void {
+    this.childCheckboxes.push(checkbox);
+    console.log('child was registered');
+  }
+
+  unregisterChild(checkbox: this) {
+    const index: number =this.childCheckboxes.indexOf(checkbox);
+    this.childCheckboxes.splice(index, 1);
+  }
+
+  childHasChanged(): void {
+    console.log('childHasChanged:', this.childCheckboxes);
+    let checkedCount: number = 0;
+    for (const childCheckbox of this.childCheckboxes) {
+      if (childCheckbox.isChecked) {
+        checkedCount++;
+      }
+    }
+    if (checkedCount === 0) {
+      this.state_ = 'unchecked';
+    } else if (checkedCount === this.childCheckboxes.length) {
+      this.state_ = 'checked';
+    } else {
+      this.state_ = 'intermediate';
+    }
+    console.log('new state:', this.state_)
   }
 
   @HostListener('click')
-  clicked() {
+  clicked(): void {
+    this.setOwnState();
+    this.notifyParentAboutChanges();
+    this.setChildrenState();
+  }
+
+  setOwnState(): void {
     if (this.disabled) {
       return;
     }
@@ -73,6 +129,20 @@ export class CheckboxComponent implements OnInit {
       this.state = 'checked';
     } else {
       this.state = 'unchecked';
+    }
+  }
+
+  notifyParentAboutChanges(): void {
+    if (this.parent) {
+      this.parent.childHasChanged.call(this.parent);
+    }
+  }
+
+  setChildrenState(): void  {
+    if (this.childCheckboxes.length > 0) {
+      for (const childCheckbox of this.childCheckboxes) {
+        childCheckbox.state_ = this.state_;
+      }
     }
   }
 }

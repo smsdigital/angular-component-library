@@ -1,4 +1,11 @@
 <div class="example">
+  <h2>Checkbox (nested):</h2>
+  <app-checkbox (stateChanged)="log($event)" #parent>parent</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [parent]="parent">child1</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [parent]="parent">child2</app-checkbox><br>
+</div>
+
+<div class="example">
   <h2>Checkbox:</h2>
   <app-checkbox (stateChanged)="log($event)">Default state</app-checkbox><br>
   <app-checkbox (stateChanged)="log($event)" [state]="'checked'">State: checked</app-checkbox><br>
