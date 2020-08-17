@@ -1,8 +1,26 @@
 <div class="example">
   <h2>Checkbox (nested):</h2>
-  <app-checkbox (stateChanged)="log($event)" #parent>parent</app-checkbox><br>
-  <app-checkbox (stateChanged)="log($event)" [parent]="parent">child1</app-checkbox><br>
-  <app-checkbox (stateChanged)="log($event)" [parent]="parent">child2</app-checkbox><br>
+  <ul>
+    <li>
+      <app-checkbox (stateChanged)="log($event)" #parent1>parent1</app-checkbox>
+      <ul>
+        <li>
+          <app-checkbox (stateChanged)="log($event)" [parent]="parent1">parent2</app-checkbox>
+        </li>
+        <li>
+          <app-checkbox (stateChanged)="log($event)" [parent]="parent1" #parent2>parent3</app-checkbox>
+          <ul>
+            <li>
+              <app-checkbox (stateChanged)="log($event)" [parent]="parent2">child1</app-checkbox>
+            </li>
+            <li>
+              <app-checkbox (stateChanged)="log($event)" [parent]="parent2">child2</app-checkbox>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
 </div>
 
 <div class="example">
@@ -13,7 +31,7 @@
   <app-checkbox (stateChanged)="log($event)" [state]="'unchecked'">State: unchecked</app-checkbox><br>
   <br>
   <app-checkbox (stateChanged)="log($event)" [disabled]="true">Default state (disabled)</app-checkbox><br>
-  <app-checkbox (stateChanged)="log($event)" [state]="'checked'" [disabled]="true">State: checked (disabled)</app-checkbox><br>
-  <app-checkbox (stateChanged)="log($event)" [state]="'intermediate'" [disabled]="true">State: intermediate (disabled)</app-checkbox><br>
-  <app-checkbox (stateChanged)="log($event)" [state]="'unchecked'" [disabled]="true">State: unchecked (disabled)</app-checkbox>
+  <app-checkbox (stateChanged)="log($event)" [disabled]="true" [state]="'checked'">State: checked (disabled)</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [disabled]="true" [state]="'intermediate'">State: intermediate (disabled)</app-checkbox><br>
+  <app-checkbox (stateChanged)="log($event)" [disabled]="true" [state]="'unchecked'">State: unchecked (disabled)</app-checkbox>
 </div>

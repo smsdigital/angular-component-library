@@ -46,12 +46,12 @@ export class CheckboxComponent implements OnInit, OnDestroy {
     return this.state === 'checked';
   }
 
-  set isIntermediate(value: boolean) {
-    this.state = 'intermediate';
-  }
-
   get isIntermediate(): boolean {
     return this.state === 'intermediate';
+  }
+
+  get isUnchecked(): boolean {
+    return this.state === 'unchecked';
   }
 
   @Input('parent')
@@ -88,20 +88,20 @@ export class CheckboxComponent implements OnInit, OnDestroy {
 
   registerChild(checkbox: this): void {
     this.childCheckboxes.push(checkbox);
-    console.log('child was registered');
   }
 
-  unregisterChild(checkbox: this) {
-    const index: number =this.childCheckboxes.indexOf(checkbox);
+  unregisterChild(checkbox: this): void {
+    const index: number = this.childCheckboxes.indexOf(checkbox);
     this.childCheckboxes.splice(index, 1);
   }
 
   childHasChanged(): void {
-    console.log('childHasChanged:', this.childCheckboxes);
     let checkedCount: number = 0;
     for (const childCheckbox of this.childCheckboxes) {
       if (childCheckbox.isChecked) {
-        checkedCount++;
+        checkedCount += 1;
+      } else if (childCheckbox.isIntermediate) {
+        checkedCount += 0.5;
       }
     }
     if (checkedCount === 0) {
@@ -111,7 +111,6 @@ export class CheckboxComponent implements OnInit, OnDestroy {
     } else {
       this.state_ = 'intermediate';
     }
-    console.log('new state:', this.state_)
   }
 
   @HostListener('click')
@@ -135,13 +134,15 @@ export class CheckboxComponent implements OnInit, OnDestroy {
   notifyParentAboutChanges(): void {
     if (this.parent) {
       this.parent.childHasChanged.call(this.parent);
+      this.parent.notifyParentAboutChanges.call(this.parent);
     }
   }
 
-  setChildrenState(): void  {
+  setChildrenState(): void {
     if (this.childCheckboxes.length > 0) {
       for (const childCheckbox of this.childCheckboxes) {
-        childCheckbox.state_ = this.state_;
+        childCheckbox.state = this.state;
+        this.setChildrenState.call(childCheckbox);
       }
     }
   }
