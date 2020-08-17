@@ -1,0 +1,35 @@
+:host {
+    display: inline-block;
+    margin-bottom: 8px;
+    border: 1px solid blue;
+
+    div {
+        display: inline-flex;
+        width: 15px;
+        height: 15px;
+        border: 1px solid black;
+        border-radius: 50px;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid green;
+    }
+
+    &.checked div::after {
+        content: '';
+        display: inline-block;
+        width: 3px;
+        height: 3px;
+        background-color: black;
+        border-radius: 50px;
+    }
+
+    span {
+        padding-left: 8px;
+        border: 1px solid red;
+
+        &:empty {
+            display: none;
+        }
+    }
+}
+

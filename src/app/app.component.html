@@ -1,20 +1,30 @@
 <div class="example">
+  <app-radiobox (stateChanged)="log($event)" [group]="'g1'"></app-radiobox><br>
+  <app-radiobox (stateChanged)="log($event)" [group]="'g1'" [checkedOnStart]="true">label2</app-radiobox><br>
+  <app-radiobox (stateChanged)="log($event)" [group]="'g1'">label3</app-radiobox><br>
+  <br>
+  <app-radiobox (stateChanged)="log($event)" [group]="'g2'">label4</app-radiobox><br>
+  <app-radiobox (stateChanged)="log($event)" [group]="'g2'">label5</app-radiobox><br>
+  <app-radiobox (stateChanged)="log($event)" [group]="'g2'" [checkedOnStart]="true">label6</app-radiobox><br>
+</div>
+
+<div class="example">
   <h2>Checkbox (nested):</h2>
   <ul>
     <li>
-      <app-checkbox (stateChanged)="log($event)" #parent1>parent1</app-checkbox>
+      <app-checkbox #parent1>parent1</app-checkbox>
       <ul>
         <li>
-          <app-checkbox (stateChanged)="log($event)" [parent]="parent1">parent2</app-checkbox>
+          <app-checkbox [parent]="parent1">parent2</app-checkbox>
         </li>
         <li>
-          <app-checkbox (stateChanged)="log($event)" [parent]="parent1" #parent2>parent3</app-checkbox>
+          <app-checkbox [parent]="parent1" #parent2>parent3</app-checkbox>
           <ul>
             <li>
-              <app-checkbox (stateChanged)="log($event)" [parent]="parent2">child1</app-checkbox>
+              <app-checkbox [parent]="parent2">child1</app-checkbox>
             </li>
             <li>
-              <app-checkbox (stateChanged)="log($event)" [parent]="parent2">child2</app-checkbox>
+              <app-checkbox [parent]="parent2">child2</app-checkbox>
             </li>
           </ul>
         </li>

@@ -58,10 +58,10 @@ export class CheckboxComponent implements OnInit, OnDestroy {
   parent: this;
 
   constructor() {
+    this.isInitialized = false;
     this.disabled = false;
     this.childCheckboxes = [];
     this.state = 'unchecked';
-    this.isInitialized = false;
     this.stateChanged = new EventEmitter<CheckboxState>();
   }
 
