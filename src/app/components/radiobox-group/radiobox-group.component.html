@@ -1,0 +1,9 @@
+<div>
+    <ng-content></ng-content>
+</div>
+<app-radiobox
+    #radiobox
+    *ngFor="let option of options"
+    (stateChanged)="optionClicked($event)"
+    [name]="option">
+</app-radiobox>

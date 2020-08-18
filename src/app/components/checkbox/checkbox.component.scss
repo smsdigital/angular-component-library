@@ -58,41 +58,43 @@
 }
 
 // themes
-.theme-white {
-    :host {
-        &:not(.disabled) {
-            div {
-                border: 1px solid map-get($theme-white, ui-05);
-            }
-            span {
-                color: map-get($theme-white, ui-05);
+@each $themeName, $theme in $themes {
+    .theme-#{$themeName} {
+        :host {
+            &:not(.disabled) {
+                div {
+                    border: 1px solid map-get($theme, ui-05);
+                }
+                span {
+                    color: map-get($theme, ui-05);
+                }
+
+                &:not(.unchecked) div {
+                    background-color: map-get($theme, ui-05);
+                }
             }
 
-            &:not(.unchecked) div {
-                background-color: map-get($theme-white, ui-05);
-            }
-        }
+            &.disabled {
+                div {
+                    border: 1px solid map-get($theme, disabled-02);
+                }
+                span {
+                    color: map-get($theme, disabled-02);
+                }
 
-        &.disabled {
-            div {
-                border: 1px solid map-get($theme-white, disabled-02);
-            }
-            span {
-                color: map-get($theme-white, disabled-02);
+                &:not(.unchecked) div {
+                    background-color: map-get($theme, disabled-02);
+                }
             }
 
-            &:not(.unchecked) div {
-                background-color: map-get($theme-white, disabled-02);
+            &.intermediate div::before {
+                background-color: map-get($theme, inverse-01);
             }
-        }
 
-        &.intermediate div::before {
-            background-color: map-get($theme-white, inverse-01);
-        }
-
-        &.checked div::before {
-            border-left: 2px solid map-get($theme-white, inverse-01);
-            border-bottom: 2px solid map-get($theme-white, inverse-01);
+            &.checked div::before {
+                border-left: 2px solid map-get($theme, inverse-01);
+                border-bottom: 2px solid map-get($theme, inverse-01);
+            }
         }
     }
 }

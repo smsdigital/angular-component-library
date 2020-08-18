@@ -1,26 +1,26 @@
 :host {
-    display: inline-block;
-    margin-bottom: 8px;
+    display: inline-grid;
+    width: max-content;
     border: 1px solid blue;
+    grid-template-columns: max-content max-content;
 
     div {
-        display: inline-flex;
+        display: flex;
+        border: 1px solid red;
         width: 15px;
         height: 15px;
-        border: 1px solid black;
-        border-radius: 50px;
         justify-content: center;
         align-items: center;
-        border: 1px solid green;
+        border-radius: 50px;;
     }
 
     &.checked div::after {
-        content: '';
+        content: "";
         display: inline-block;
-        width: 3px;
-        height: 3px;
-        background-color: black;
-        border-radius: 50px;
+        width: 5px;
+        height: 5px;
+        background-color: green;
+        border-radius: 50px;;
     }
 
     span {
@@ -33,3 +33,6 @@
     }
 }
 
+.stackedList :host {
+    display: grid;
+}
