@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CheckboxState } from './components/checkbox/checkbox.component';
 
 @Component({
   selector: 'app-root',
@@ -8,8 +7,14 @@ import { CheckboxState } from './components/checkbox/checkbox.component';
 })
 export class AppComponent {
 
+  private testValue = 5;
+
   log(value: any) {
     console.log(value);
+  }
+
+  buttonWasClicked() {
+    console.log('button was clicked (outside event)!', this.testValue);
   }
 
 }

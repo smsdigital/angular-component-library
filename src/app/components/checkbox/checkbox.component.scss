@@ -1,10 +1,10 @@
 @import 'styleguide-variables/styles/variables.scss';
 
 :host {
+    display: inline-grid;
+    grid-template-columns: max-content 1fr;
     box-sizing: border-box;
-    display: inline-flex;
-    width: auto;
-    padding: 0.125rem 0 0.125rem 0.125rem;
+    padding: 0.125rem;
     user-select: none;
     cursor: pointer;
     align-items: center;
@@ -12,7 +12,6 @@
     div {
         height: 1rem;
         width: 1rem;
-        margin-right: 0.125rem;
         justify-content: center;
         display: inline-flex;
         align-items: center;
@@ -23,11 +22,12 @@
     }
 
     span:not(:empty) {
+        @include body-short-01;
         box-sizing: inherit;
-        font-size: 0.875rem;
-        font-weight: 400;
-        padding-left: 0.5rem;
-        padding-right: 0.125rem;
+        padding-left: $spacing-03;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     &.disabled {

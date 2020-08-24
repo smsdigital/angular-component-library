@@ -1,4 +1,8 @@
 <div class="example">
+  button:<br>
+  <app-button (click)="buttonWasClicked()" [icon]="'fab fa-accessible-icon'">my Button!</app-button>
+</div>
+<div class="example">
   <app-radiobox-group [options]="['m', 'w', 'd']" (optionSelected)="log($event)">Select Gender:</app-radiobox-group>
   <br>
 </div>
