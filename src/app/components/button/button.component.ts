@@ -1,4 +1,4 @@
-import { Component, Input, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -7,24 +7,7 @@ import { Component, Input, HostListener, Output, EventEmitter } from '@angular/c
 })
 export class ButtonComponent {
 
-  @Input('onPress')
-  onPress: IOnPress;
-
   @Input('icon')
   icon: string;
 
-  @HostListener('click', ['$event'])
-  click(event: MouseEvent) {
-    console.log('clicked!');
-    if (this.onPress) {
-      this.onPress.action.call(this.onPress.reference);
-    }
-    event.stopPropagation();
-  }
-
-}
-
-interface IOnPress {
-  action: () => any;
-  reference: any;
 }
