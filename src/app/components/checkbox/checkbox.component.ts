@@ -32,9 +32,11 @@ export class CheckboxComponent implements OnInit, OnDestroy {
 
   @Input('state')
   set state(value: CheckboxState) {
-    this.state_ = value;
-    if (this.isInitialized) {
-      this.stateChanged.next(this.state_);
+    if (this.state_ !== value) {
+      this.state_ = value;
+      if (this.isInitialized) {
+        this.stateChanged.next(this.state_);
+      }
     }
   }
 
@@ -115,15 +117,14 @@ export class CheckboxComponent implements OnInit, OnDestroy {
 
   @HostListener('click')
   clicked(): void {
-    this.setOwnState();
-    this.notifyParentAboutChanges();
-    this.setChildrenState();
+    if (!this.disabled) {
+      this.setOwnState();
+      this.notifyParentAboutChanges();
+      this.setChildrenState();
+    }
   }
 
   setOwnState(): void {
-    if (this.disabled) {
-      return;
-    }
     if (this.state === 'unchecked') {
       this.state = 'checked';
     } else {

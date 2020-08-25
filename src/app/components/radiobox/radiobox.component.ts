@@ -9,8 +9,8 @@ export class RadioboxComponent {
 
   private checked_: boolean;
 
-  @Input('name')
-  name: string;
+  @Input('option')
+  option: ICheckboxOption;
 
   @Output('stateChanged')
   stateChanged: EventEmitter<RadioboxComponent>;
@@ -35,4 +35,9 @@ export class RadioboxComponent {
     this.stateChanged = new EventEmitter<RadioboxComponent>();
   }
 
+}
+
+interface ICheckboxOption {
+  value: any;
+  label: string;
 }

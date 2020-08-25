@@ -10,7 +10,7 @@ export class AppComponent {
   private testValue = 5;
 
   log(value: any) {
-    console.log(value);
+    console.log('demo page logs:', value);
   }
 
   buttonWasClicked() {

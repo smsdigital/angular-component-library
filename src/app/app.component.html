@@ -3,7 +3,7 @@
   <app-button (click)="buttonWasClicked()" [icon]="'fab fa-accessible-icon'">my Button!</app-button>
 </div>
 <div class="example">
-  <app-radiobox-group [options]="['m', 'w', 'd']" (optionSelected)="log($event)">Select Gender:</app-radiobox-group>
+  <app-radiobox-group [options]="[{value: 'm', label: 'male'},{value: 'f', label: 'female'},{value: 'd', label: 'diverse'}]" (optionSelected)="log($event)">Select Gender:</app-radiobox-group>
   <br>
 </div>
 

@@ -6,57 +6,56 @@ import { RadioboxComponent } from '../radiobox/radiobox.component';
   templateUrl: './radiobox-group.component.html',
   styleUrls: ['./radiobox-group.component.scss']
 })
-export class RadioboxGroupComponent implements OnInit {
+export class RadioboxGroupComponent {
 
-  private selectedOption_: string;
+  private selectedOption_: ICheckboxOption;
 
-  set selectedOption(value: string) {
+  set selectedOption(value: ICheckboxOption) {
     if (value !== this.selectedOption_) {
       this.selectedOption_ = value;
       this.optionSelected.next(value);
     }
   }
 
-  get selectedOption(): string {
+  get selectedOption(): ICheckboxOption {
     return this.selectedOption_;
   }
 
   @ViewChildren('radiobox')
-  radioboxen: RadioboxComponent[];
+  radioboxes: RadioboxComponent[];
 
   @Output('optionSelected')
-  optionSelected: EventEmitter<string>;
+  optionSelected: EventEmitter<ICheckboxOption>;
 
   @Input('stackedList')
   @HostBinding('class.stackedList')
   stackedList: boolean;
 
   @Input('options')
-  options: string[];
+  options: ICheckboxOption[];
 
   constructor() {
     this.options = [];
     this.stackedList = true;
-    console.log('stackedList1:', this.stackedList);
-    this.optionSelected = new EventEmitter<string>();
-  }
-
-  ngOnInit() {
-    console.log('stackedList2:', this.stackedList);
+    this.optionSelected = new EventEmitter<ICheckboxOption>();
   }
 
   optionClicked(selectedRadiobox: RadioboxComponent): void {
-    console.log('optionSelected:', selectedRadiobox.name);
     this.uncheckOtherRadioboxes(selectedRadiobox);
-    this.selectedOption = selectedRadiobox.name;
+    this.selectedOption = selectedRadiobox.option;
   }
 
   private uncheckOtherRadioboxes(selectedRadiobox: RadioboxComponent): void {
-    for (const radiobox of this.radioboxen) {
+    for (const radiobox of this.radioboxes) {
       if (radiobox !== selectedRadiobox) {
         radiobox.checked = false;
       }
     }
   }
 
+}
+
+interface ICheckboxOption {
+  value: any;
+  label: string;
 }
