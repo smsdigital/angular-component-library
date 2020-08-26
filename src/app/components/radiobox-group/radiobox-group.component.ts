@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewChildren, Output, EventEmitter, HostBinding } from '@angular/core';
-import { RadioboxComponent } from '../radiobox/radiobox.component';
+import { Component, Input, ViewChildren, Output, EventEmitter, HostBinding } from '@angular/core';
+import { RadiobuttonComponent } from '../radiobutton/radiobutton.component';
 
 @Component({
   selector: 'app-radiobox-group',
@@ -22,7 +22,7 @@ export class RadioboxGroupComponent {
   }
 
   @ViewChildren('radiobox')
-  radioboxes: RadioboxComponent[];
+  radioboxes: RadiobuttonComponent[];
 
   @Output('optionSelected')
   optionSelected: EventEmitter<ICheckboxOption>;
@@ -40,12 +40,12 @@ export class RadioboxGroupComponent {
     this.optionSelected = new EventEmitter<ICheckboxOption>();
   }
 
-  optionClicked(selectedRadiobox: RadioboxComponent): void {
+  optionClicked(selectedRadiobox: RadiobuttonComponent): void {
     this.uncheckOtherRadioboxes(selectedRadiobox);
     this.selectedOption = selectedRadiobox.option;
   }
 
-  private uncheckOtherRadioboxes(selectedRadiobox: RadioboxComponent): void {
+  private uncheckOtherRadioboxes(selectedRadiobox: RadiobuttonComponent): void {
     for (const radiobox of this.radioboxes) {
       if (radiobox !== selectedRadiobox) {
         radiobox.checked = false;
