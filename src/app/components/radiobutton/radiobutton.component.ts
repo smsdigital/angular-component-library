@@ -9,6 +9,10 @@ export class RadiobuttonComponent {
 
   private checked_: boolean;
 
+  @Input('disabled')
+  @HostBinding('class.disabled')
+  disabled: boolean;
+
   @Input('option')
   option: ICheckboxOption;
 
@@ -17,8 +21,10 @@ export class RadiobuttonComponent {
 
   @HostListener('click')
   clicked(): void {
-    this.checked = true;
-    this.stateChanged.next(this);
+    if (!this.disabled) {
+      this.checked = true;
+      this.stateChanged.next(this);
+    }
   }
 
   set checked(value: boolean) {
@@ -32,6 +38,7 @@ export class RadiobuttonComponent {
 
   constructor() {
     this.checked = false;
+    this.disabled = false;
     this.stateChanged = new EventEmitter<RadiobuttonComponent>();
   }
 

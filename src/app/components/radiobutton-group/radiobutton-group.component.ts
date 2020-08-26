@@ -2,11 +2,11 @@ import { Component, Input, ViewChildren, Output, EventEmitter, HostBinding } fro
 import { RadiobuttonComponent } from '../radiobutton/radiobutton.component';
 
 @Component({
-  selector: 'app-radiobox-group',
-  templateUrl: './radiobox-group.component.html',
-  styleUrls: ['./radiobox-group.component.scss']
+  selector: 'app-radiobutton-group',
+  templateUrl: './radiobutton-group.component.html',
+  styleUrls: ['./radiobutton-group.component.scss']
 })
-export class RadioboxGroupComponent {
+export class RadiobuttonGroupComponent {
 
   private selectedOption_: ICheckboxOption;
 
@@ -21,8 +21,12 @@ export class RadioboxGroupComponent {
     return this.selectedOption_;
   }
 
-  @ViewChildren('radiobox')
-  radioboxes: RadiobuttonComponent[];
+  @Input('disabled')
+  @HostBinding('class.disabled')
+  disabled: boolean;
+
+  @ViewChildren('radiobutton')
+  radiobuttons: RadiobuttonComponent[];
 
   @Output('optionSelected')
   optionSelected: EventEmitter<ICheckboxOption>;
@@ -37,18 +41,19 @@ export class RadioboxGroupComponent {
   constructor() {
     this.options = [];
     this.stackedList = true;
+    this.disabled = false;
     this.optionSelected = new EventEmitter<ICheckboxOption>();
   }
 
-  optionClicked(selectedRadiobox: RadiobuttonComponent): void {
-    this.uncheckOtherRadioboxes(selectedRadiobox);
-    this.selectedOption = selectedRadiobox.option;
+  optionClicked(selectedRadiobutton: RadiobuttonComponent): void {
+    this.uncheckOtherRadioboxes(selectedRadiobutton);
+    this.selectedOption = selectedRadiobutton.option;
   }
 
-  private uncheckOtherRadioboxes(selectedRadiobox: RadiobuttonComponent): void {
-    for (const radiobox of this.radioboxes) {
-      if (radiobox !== selectedRadiobox) {
-        radiobox.checked = false;
+  private uncheckOtherRadioboxes(selectedRadiobutton: RadiobuttonComponent): void {
+    for (const radiobutton of this.radiobuttons) {
+      if (radiobutton !== selectedRadiobutton) {
+        radiobutton.checked = false;
       }
     }
   }

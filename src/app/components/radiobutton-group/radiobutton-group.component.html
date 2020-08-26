@@ -1,9 +1,10 @@
 <div>
     <ng-content></ng-content>
 </div>
-<app-radiobox
-    #radiobox
+<app-radiobutton
+    #radiobutton
     *ngFor="let option of options"
     (stateChanged)="optionClicked($event)"
+    [disabled]="disabled"
     [option]="option">
-</app-radiobox>
+</app-radiobutton>

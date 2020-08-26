@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { RadiobuttonComponent } from './components/radiobutton/radiobutton.component';
-import { RadioboxGroupComponent } from './components/radiobox-group/radiobox-group.component';
+import { RadiobuttonGroupComponent } from './components/radiobutton-group/radiobutton-group.component';
 import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
@@ -12,7 +12,7 @@ import { ButtonComponent } from './components/button/button.component';
     AppComponent,
     CheckboxComponent,
     RadiobuttonComponent,
-    RadioboxGroupComponent,
+    RadiobuttonGroupComponent,
     ButtonComponent
   ],
   imports: [
