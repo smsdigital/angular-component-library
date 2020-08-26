@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RadioboxComponent } from './radiobox.component';
+import { RadiobuttonComponent } from './radiobutton.component';
 
 describe('RadioboxComponent', () => {
-  let component: RadioboxComponent;
-  let fixture: ComponentFixture<RadioboxComponent>;
+  let component: RadiobuttonComponent;
+  let fixture: ComponentFixture<RadiobuttonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RadioboxComponent ]
+      declarations: [ RadiobuttonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RadioboxComponent);
+    fixture = TestBed.createComponent(RadiobuttonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

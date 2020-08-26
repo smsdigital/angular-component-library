@@ -1,11 +1,11 @@
-import { Component, OnInit, HostBinding, HostListener, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
+import { Component, HostBinding, HostListener, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-radiobox',
-  templateUrl: './radiobox.component.html',
-  styleUrls: ['./radiobox.component.scss']
+  selector: 'app-radiobutton',
+  templateUrl: './radiobutton.component.html',
+  styleUrls: ['./radiobutton.component.scss']
 })
-export class RadioboxComponent {
+export class RadiobuttonComponent {
 
   private checked_: boolean;
 
@@ -13,7 +13,7 @@ export class RadioboxComponent {
   option: ICheckboxOption;
 
   @Output('stateChanged')
-  stateChanged: EventEmitter<RadioboxComponent>;
+  stateChanged: EventEmitter<RadiobuttonComponent>;
 
   @HostListener('click')
   clicked(): void {
@@ -32,7 +32,7 @@ export class RadioboxComponent {
 
   constructor() {
     this.checked = false;
-    this.stateChanged = new EventEmitter<RadioboxComponent>();
+    this.stateChanged = new EventEmitter<RadiobuttonComponent>();
   }
 
 }
