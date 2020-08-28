@@ -1,11 +1,11 @@
-import { Component, HostBinding, HostListener, Output, EventEmitter, Input } from '@angular/core';
+import { Component, HostBinding, HostListener, Output, EventEmitter, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-radiobutton',
   templateUrl: './radiobutton.component.html',
-  styleUrls: ['./radiobutton.component.scss']
+  styleUrls: ['./radiobutton.component.scss'],
 })
-export class RadiobuttonComponent {
+export class RadiobuttonComponent implements OnInit {
 
   private checked_: boolean;
 
@@ -15,6 +15,9 @@ export class RadiobuttonComponent {
 
   @Input('option')
   option: ICheckboxOption;
+
+  @Input('preSelected')
+  preSelected: boolean;
 
   @Output('stateChanged')
   stateChanged: EventEmitter<RadiobuttonComponent>;
@@ -40,6 +43,16 @@ export class RadiobuttonComponent {
     this.checked = false;
     this.disabled = false;
     this.stateChanged = new EventEmitter<RadiobuttonComponent>();
+  }
+
+  ngOnInit() {
+    this.checkForPreSelection();
+  }
+
+  private checkForPreSelection() {
+    if (this.preSelected === true) {
+      this.checked = true;
+    }
   }
 
 }

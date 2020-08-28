@@ -38,6 +38,9 @@ export class RadiobuttonGroupComponent {
   @Input('options')
   options: ICheckboxOption[];
 
+  @Input('preSelectedOptionValue')
+  preSelectedOptionValue: any;
+
   constructor() {
     this.options = [];
     this.stackedList = true;
@@ -50,6 +53,13 @@ export class RadiobuttonGroupComponent {
     this.selectedOption = selectedRadiobutton.option;
   }
 
+  checkForPreSelection(option: ICheckboxOption): boolean {
+    if(this.preSelectedOptionValue !== undefined && this.preSelectedOptionValue === option.value) {
+      return true;
+    }
+    return false;
+  }
+
   private uncheckOtherRadioboxes(selectedRadiobutton: RadiobuttonComponent): void {
     for (const radiobutton of this.radiobuttons) {
       if (radiobutton !== selectedRadiobutton) {
@@ -57,7 +67,6 @@ export class RadiobuttonGroupComponent {
       }
     }
   }
-
 }
 
 interface ICheckboxOption {
