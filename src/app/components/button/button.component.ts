@@ -1,12 +1,9 @@
-import { Component, Input, HostBinding, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, Input, HostBinding, HostListener, Output, EventEmitter, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
-  host: {
-    "[attr.tabindex]": "0",
-  }
 })
 export class ButtonComponent {
 
@@ -27,8 +24,15 @@ export class ButtonComponent {
   }
 
   @Input('disabled')
-  @HostBinding('class.disabled')
-  disabled: boolean;
+  set disabled(value: boolean) {
+    if(value) {
+      this.elementRef.nativeElement.classList.add('disabled');
+      this.elementRef.nativeElement.removeAttribute('tabindex');
+    } else {
+      this.elementRef.nativeElement.classList.remove('disabled');
+      this.elementRef.nativeElement.setAttribute('tabindex', '0');
+    }
+  }
 
   @HostListener('keydown.enter', ['$event'])
   @HostListener('keydown.space', ['$event'])
@@ -44,7 +48,7 @@ export class ButtonComponent {
   @Output('clicked')
   clicked: EventEmitter<Event>;
 
-  constructor() {
+  constructor(private elementRef: ElementRef<HTMLElement>) {
     this.disabled = false;
     this.type = 'primary';
     this.size = 'default';

@@ -7,7 +7,6 @@
     [size]="'default'"
     [disabled]="false"
     >Save primary</app-button>
-  &nbsp;
   <app-button
   (clicked)="buttonWasClicked()"
   [icon]="'fab fa-accessible-icon'"
@@ -15,7 +14,7 @@
   [size]="'default'"
   [disabled]="true"
   >Save primary</app-button>
-  <br><br>
+  <br>
   <app-button
     (clicked)="buttonWasClicked()"
     [icon]="'fab fa-accessible-icon'"
@@ -23,7 +22,6 @@
     [size]="'default'"
     [disabled]="false"
     >Save secondary</app-button>
-  &nbsp;
   <app-button
   (clicked)="buttonWasClicked()"
   [icon]="'fab fa-accessible-icon'"
@@ -31,7 +29,7 @@
   [size]="'default'"
   [disabled]="true"
   >Save secondary</app-button>
-  <br><br>
+  <br>
   <app-button
     (clicked)="buttonWasClicked()"
     [icon]="'fab fa-accessible-icon'"
@@ -39,7 +37,6 @@
     [size]="'default'"
     [disabled]="false"
     >Save tertiary</app-button>
-  &nbsp;
   <app-button
   (clicked)="buttonWasClicked()"
   [icon]="'fab fa-accessible-icon'"
@@ -47,7 +44,7 @@
   [size]="'default'"
   [disabled]="true"
   >Save tertiary</app-button>
-  <br><br>
+  <br>
   <app-button
     (clicked)="buttonWasClicked()"
     [icon]="'fab fa-accessible-icon'"
@@ -55,7 +52,6 @@
     [size]="'default'"
     [disabled]="false"
     >Save ghost</app-button>
-  &nbsp;
   <app-button
   (clicked)="buttonWasClicked()"
   [icon]="'fab fa-accessible-icon'"
@@ -63,7 +59,7 @@
   [size]="'default'"
   [disabled]="true"
   >Save ghost</app-button>
-  <br><br>
+  <br>
   <app-button
     (clicked)="buttonWasClicked()"
     [icon]="'fab fa-accessible-icon'"
@@ -71,7 +67,6 @@
     [size]="'default'"
     [disabled]="false"
     >Save danger</app-button>
-  &nbsp;
   <app-button
   (clicked)="buttonWasClicked()"
   [icon]="'fab fa-accessible-icon'"
@@ -79,6 +74,13 @@
   [size]="'default'"
   [disabled]="true"
   >Save danger</app-button>
+</div>
+<div class="example">
+  <app-button-group>
+    <app-button [icon]="'fab fa-accessible-icon'">primary</app-button>
+    <app-button [type]="'secondary'" [icon]="'fab fa-accessible-icon'">secondary 1</app-button>
+    <app-button [type]="'secondary'" [icon]="'fab fa-accessible-icon'">secondary 2</app-button>
+  </app-button-group>
 </div>
 <div class="example">
   <app-radiobutton-group [preSelectedOptionValue]="'d'" [options]="[{value: 'm', label: 'male'},{value: 'f', label: 'female'},{value: 'd', label: 'diverse'}]" (optionSelected)="log($event)">Select Gender:</app-radiobutton-group>

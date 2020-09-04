@@ -1,0 +1,5 @@
+:host ::ng-deep {
+    app-button:not(:first-of-type) {
+        margin-left: 0;
+    }
+}

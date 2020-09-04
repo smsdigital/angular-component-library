@@ -6,6 +6,7 @@ import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { RadiobuttonComponent } from './components/radiobutton/radiobutton.component';
 import { RadiobuttonGroupComponent } from './components/radiobutton-group/radiobutton-group.component';
 import { ButtonComponent } from './components/button/button.component';
+import { ButtonGroupComponent } from './components/button-group/button-group.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ButtonComponent } from './components/button/button.component';
     CheckboxComponent,
     RadiobuttonComponent,
     RadiobuttonGroupComponent,
-    ButtonComponent
+    ButtonComponent,
+    ButtonGroupComponent
   ],
   imports: [
     BrowserModule
