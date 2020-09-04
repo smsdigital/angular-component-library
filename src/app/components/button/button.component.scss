@@ -1,10 +1,200 @@
+@import 'styleguide-variables/styles/variables.scss';
+
 :host {
-    border: 1px solid blue;
     white-space: nowrap;
     cursor: pointer;
     user-select: none;
+    display: inline-flex;
+    align-items: center;
 
-    &:hover {
-        background-color: grey;
+    padding-left: $spacing-05;
+    padding-right: $spacing-05;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.disabled {
+        cursor: not-allowed;
+    }
+
+    &.size-default {
+        height: 3rem;
+    }
+    &.size-inline {
+        height: 2.5rem;
+    }
+    &.size-small {
+        height: 2rem;
+    }
+
+    i {
+        width: 16px;
+        height: 16px;
+        margin-left: $spacing-05;
+    }
+}
+
+// themes
+@each $themeName, $theme in $themes {
+    .theme-#{$themeName} {
+        :host {
+            @include body-short-01;
+
+            &.type-primary {
+                color: map-get($theme, text-04);
+                background-color: map-get($theme, interactive-01);
+
+                &:focus {
+                    box-shadow: 0 0 0 2px map-get($theme, focus);
+                }
+    
+                &:hover {
+                    background-color: map-get($theme, hover-primary);
+                }
+
+                &:active {
+                    background-color: map-get($theme, active-primary);
+                }
+    
+                &.disabled {
+                    background-color: map-get($theme, disabled-02);
+                    color: map-get($theme, disabled-03);
+                }
+    
+                i {
+                    color: map-get($theme, icon-03); 
+                }
+            }
+
+            &.type-secondary {
+                color: map-get($theme, text-04);
+                background-color: map-get($theme, interactive-02);
+
+                &:focus {
+                    box-shadow: 0 0 0 2px map-get($theme, focus);
+                }
+    
+                &:hover {
+                    background-color: map-get($theme, hover-secondary);
+                }
+
+                &:active {
+                    background-color: map-get($theme, active-secondary);
+                }
+    
+                &.disabled {
+                    background-color: map-get($theme, disabled-02);
+                    color: map-get($theme, disabled-03);
+                }
+    
+                i {
+                    color: map-get($theme, icon-03); 
+                }
+            }
+
+            &.type-tertiary {
+                color: map-get($theme, interactive-03);
+                border: 1px solid map-get($theme, interactive-03);
+
+                &:focus {
+                    color: map-get($theme, inverse-01);
+                    background-color: map-get($theme, interactive-03);
+                    box-shadow: 0 0 0 2px map-get($theme, focus);
+                }
+    
+                &:hover:not(.disabled) {
+                    color: map-get($theme, text-04);
+                    background-color: map-get($theme, hover-tertiary);
+
+                    i {
+                        color: map-get($theme, icon-03);
+                    }
+                }
+
+                &:active {
+                    color: map-get($theme, inverse-01);
+                }
+    
+                &.disabled {
+                    background-color: transparent;
+                    color: map-get($theme, disabled-02);
+                    border: 1px solid map-get($theme, disabled-02);
+                }
+    
+                i {
+                    color: map-get($theme, interactive-03); 
+                }
+            }
+
+            &.type-ghost {
+                color: map-get($theme, text-04);
+                background-color: map-get($theme, interactive-01);
+
+                &:focus {
+                    box-shadow: 0 0 0 2px map-get($theme, focus);
+                }
+    
+                &:hover {
+                    background-color: map-get($theme, hover-primary);
+                }
+
+                &:active {
+                    background-color: map-get($theme, active-ui);
+                }
+    
+                &.disabled {
+                    background-color: map-get($theme, disabled-02);
+                    color: map-get($theme, disabled-03);
+                }
+    
+                i {
+                    color: map-get($theme, icon-03); 
+                }
+            }
+
+            &.type-danger {
+                color: map-get($theme, text-04);
+                background-color: map-get($theme, interactive-01);
+
+                &:focus {
+                    box-shadow: 0 0 0 2px map-get($theme, focus);
+                }
+    
+                &:hover {
+                    background-color: map-get($theme, hover-primary);
+                }
+
+                &:active {
+                    background-color: map-get($theme, active-danger);
+                }
+    
+                &.disabled {
+                    background-color: map-get($theme, disabled-02);
+                    color: map-get($theme, disabled-03);
+                }
+    
+                i {
+                    color: map-get($theme, icon-03); 
+                }
+            }
+            
+        }
+
+        /*:host.secondary {
+            
+        }
+
+        :host.tertiary {
+            
+        }
+
+        :host.ghost {
+            
+        }
+
+        :host.danger {
+            
+        }*/
     }
 }

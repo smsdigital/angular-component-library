@@ -1,6 +1,84 @@
 <div class="example">
   button:<br>
-  <app-button (click)="buttonWasClicked()" [icon]="'fab fa-accessible-icon'">my Button!</app-button>
+  <app-button
+    (clicked)="buttonWasClicked()"
+    [icon]="'fab fa-accessible-icon'"
+    [type]="'primary'"
+    [size]="'default'"
+    [disabled]="false"
+    >Save primary</app-button>
+  &nbsp;
+  <app-button
+  (clicked)="buttonWasClicked()"
+  [icon]="'fab fa-accessible-icon'"
+  [type]="'primary'"
+  [size]="'default'"
+  [disabled]="true"
+  >Save primary</app-button>
+  <br><br>
+  <app-button
+    (clicked)="buttonWasClicked()"
+    [icon]="'fab fa-accessible-icon'"
+    [type]="'secondary'"
+    [size]="'default'"
+    [disabled]="false"
+    >Save secondary</app-button>
+  &nbsp;
+  <app-button
+  (clicked)="buttonWasClicked()"
+  [icon]="'fab fa-accessible-icon'"
+  [type]="'secondary'"
+  [size]="'default'"
+  [disabled]="true"
+  >Save secondary</app-button>
+  <br><br>
+  <app-button
+    (clicked)="buttonWasClicked()"
+    [icon]="'fab fa-accessible-icon'"
+    [type]="'tertiary'"
+    [size]="'default'"
+    [disabled]="false"
+    >Save tertiary</app-button>
+  &nbsp;
+  <app-button
+  (clicked)="buttonWasClicked()"
+  [icon]="'fab fa-accessible-icon'"
+  [type]="'tertiary'"
+  [size]="'default'"
+  [disabled]="true"
+  >Save tertiary</app-button>
+  <br><br>
+  <app-button
+    (clicked)="buttonWasClicked()"
+    [icon]="'fab fa-accessible-icon'"
+    [type]="'ghost'"
+    [size]="'default'"
+    [disabled]="false"
+    >Save ghost</app-button>
+  &nbsp;
+  <app-button
+  (clicked)="buttonWasClicked()"
+  [icon]="'fab fa-accessible-icon'"
+  [type]="'ghost'"
+  [size]="'default'"
+  [disabled]="true"
+  >Save ghost</app-button>
+  <br><br>
+  <app-button
+    (clicked)="buttonWasClicked()"
+    [icon]="'fab fa-accessible-icon'"
+    [type]="'danger'"
+    [size]="'default'"
+    [disabled]="false"
+    >Save danger</app-button>
+  &nbsp;
+  <app-button
+  (clicked)="buttonWasClicked()"
+  [icon]="'fab fa-accessible-icon'"
+  [type]="'danger'"
+  [size]="'default'"
+  [disabled]="true"
+  >Save danger</app-button>
 </div>
 <div class="example">
   <app-radiobutton-group [preSelectedOptionValue]="'d'" [options]="[{value: 'm', label: 'male'},{value: 'f', label: 'female'},{value: 'd', label: 'diverse'}]" (optionSelected)="log($event)">Select Gender:</app-radiobutton-group>

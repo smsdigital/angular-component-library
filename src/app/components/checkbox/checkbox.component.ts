@@ -1,11 +1,14 @@
-import { Component, Output, EventEmitter, Input, HostListener, HostBinding, OnInit, OnDestroy } from '@angular/core';
+import { Component, Output, EventEmitter, Input, HostListener, HostBinding, OnInit, OnDestroy, ElementRef } from '@angular/core';
 
 export type CheckboxState = 'checked' | 'intermediate' | 'unchecked';
 
 @Component({
   selector: 'app-checkbox',
   templateUrl: './checkbox.component.html',
-  styleUrls: ['./checkbox.component.scss']
+  styleUrls: ['./checkbox.component.scss'],
+  host: {
+    "[attr.tabindex]": "0",
+  }
 })
 export class CheckboxComponent implements OnInit, OnDestroy {
 
@@ -115,9 +118,13 @@ export class CheckboxComponent implements OnInit, OnDestroy {
     }
   }
 
-  @HostListener('click')
-  clicked(): void {
+  @HostListener('keydown.enter', ['$event'])
+  @HostListener('keydown.space', ['$event'])
+  @HostListener('click', ['$event'])
+  private toggle(event: Event): void {
     if (!this.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
       this.setOwnState();
       this.notifyParentAboutChanges();
       this.setChildrenState();

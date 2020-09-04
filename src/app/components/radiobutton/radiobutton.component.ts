@@ -4,6 +4,9 @@ import { Component, HostBinding, HostListener, Output, EventEmitter, Input, OnIn
   selector: 'app-radiobutton',
   templateUrl: './radiobutton.component.html',
   styleUrls: ['./radiobutton.component.scss'],
+  host: {
+    "[attr.tabindex]": "0",
+  }
 })
 export class RadiobuttonComponent implements OnInit {
 
@@ -22,9 +25,13 @@ export class RadiobuttonComponent implements OnInit {
   @Output('stateChanged')
   stateChanged: EventEmitter<RadiobuttonComponent>;
 
-  @HostListener('click')
-  clicked(): void {
+  @HostListener('keydown.enter', ['$event'])
+  @HostListener('keydown.space', ['$event'])
+  @HostListener('click', ['$event'])
+  private toggle(event: Event): void {
     if (!this.disabled) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
       this.checked = true;
       this.stateChanged.next(this);
     }
