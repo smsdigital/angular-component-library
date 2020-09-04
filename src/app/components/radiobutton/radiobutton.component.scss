@@ -49,11 +49,11 @@
     .theme-#{$themeName} {
         :host {
 
-            &:focus div {
+            &:focus:not(.disabled) div {
                 box-shadow: 0 0 0 2px map-get($theme, focus);
             }
             div {
-                border: 1px solid  map-get($theme, ui-05);
+                border: 1px solid map-get($theme, ui-05);
             }
             span {
                 color: map-get($theme, text-01);
@@ -61,20 +61,23 @@
             
             &.disabled {
                 div {
-                    border: 1px solid  map-get($theme, disabled-02);
-    
-                    &::after {
-                        background-color: map-get($theme, ui-05);
-    
-                    }
+                    border: 1px solid map-get($theme, disabled-02);
                 }
                 span {
                     color: map-get($theme, disabled-02);
                 }
             }
 
-            &.checked div::after {
-                background-color: map-get($theme, ui-05);
+            &.checked {
+                div::after {
+                    background-color: map-get($theme, ui-05);
+                }
+
+                &.disabled {
+                    div::after {
+                        background-color: map-get($theme, disabled-02);
+                    }
+                }
             }
         }
     }
