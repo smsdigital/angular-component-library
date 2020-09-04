@@ -8,7 +8,7 @@ class MockCheckbox implements Partial<CheckboxComponent> {
   unregisterSelfOnParent() { }
 }
 
-fdescribe('CheckboxComponent', () => {
+describe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
   let dummyClickEvent: Event;
