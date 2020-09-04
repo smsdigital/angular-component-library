@@ -9,11 +9,6 @@
     cursor: pointer;
     align-items: center;
 
-    // remove
-    &:focus {
-        border: 5px solid red;
-    }
-
     div {
         height: 1rem;
         width: 1rem;

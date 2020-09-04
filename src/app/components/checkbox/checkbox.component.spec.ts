@@ -11,6 +11,7 @@ class MockCheckbox implements Partial<CheckboxComponent> {
 fdescribe('CheckboxComponent', () => {
   let component: CheckboxComponent;
   let fixture: ComponentFixture<CheckboxComponent>;
+  let dummyClickEvent: Event;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -22,6 +23,7 @@ fdescribe('CheckboxComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
+    dummyClickEvent = new Event('click');
     fixture.detectChanges();
   });
 
@@ -34,39 +36,39 @@ fdescribe('CheckboxComponent', () => {
   });
 
   it('should be checked after click', () => {
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.state).toBe('checked');
   });
 
   it('should be unchecked after click on checked state', () => {
     component.state = 'checked';
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.state).toBe('unchecked');
   });
 
   it('should be unchecked after click on intermediate state', () => {
     component.state = 'intermediate';
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.state).toBe('unchecked');
   });
 
   it('should not change state when disabled and clicked', () => {
     component.disabled = true;
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.state).toBe('unchecked');
   });
 
   it('should not not notify parent if disabled and clicked', () => {
     spyOn(component, 'notifyParentAboutChanges');
     component.disabled = true;
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.notifyParentAboutChanges).not.toHaveBeenCalled();
   });
 
   it('should not not set children if disabled and clicked', () => {
     spyOn(component, 'setChildrenState');
     component.disabled = true;
-    component.clicked();
+    component['toggle'](dummyClickEvent);
     expect(component.setChildrenState).not.toHaveBeenCalled();
   });
 
