@@ -7,6 +7,8 @@ import { Component, Input, HostBinding, HostListener, Output, EventEmitter, Elem
 })
 export class ButtonComponent {
 
+  private disabled_: boolean;
+
   @Input('size')
   size: buttonSize;
 
@@ -17,19 +19,19 @@ export class ButtonComponent {
   type: buttonType;
 
   @HostBinding('class')
-  private get classes(): string[] {
-    const type = `type-${this.type}`;
-    const size = `size-${this.size}`;
-    return [type, size];
+  private get classes(): string {
+    const type: string = `type-${this.type}`;
+    const size: string = `size-${this.size}`;
+    const disabled: string = this.disabled_ ? 'disabled' : '';
+    return `${type} ${size} ${disabled}`;
   }
 
   @Input('disabled')
   set disabled(value: boolean) {
-    if(value) {
-      this.elementRef.nativeElement.classList.add('disabled');
+    this.disabled_ = value;
+    if(this.disabled_) {
       this.elementRef.nativeElement.removeAttribute('tabindex');
     } else {
-      this.elementRef.nativeElement.classList.remove('disabled');
       this.elementRef.nativeElement.setAttribute('tabindex', '0');
     }
   }
@@ -38,7 +40,7 @@ export class ButtonComponent {
   @HostListener('keydown.space', ['$event'])
   @HostListener('click', ['$event'])
   private execute(event: Event) {
-    if(!this.disabled) {
+    if(!this.disabled_) {
       event.preventDefault();
       event.stopImmediatePropagation();
       this.clicked.next(event);

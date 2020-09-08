@@ -1,44 +1,60 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import Button from './button.component';
+// import Button from './button.component';
+import { ButtonComponent } from '../app/components/button/button.component';
 
 export default {
   title: 'Example/Button',
-  component: Button,
+  component: ButtonComponent,
   argTypes: {
-    backgroundColor: { control: 'color' },
-    onClick: { action: 'clicked' },
-    contentProjection: { control: 'text'}
+    contentProjection: { control: 'text' },
+    type: { control: {
+      type: 'inline-radio',
+      options: ['primary', 'secondary', 'tertiary', 'ghost', 'danger']
+    }},
+    size: { control: {
+      type: 'inline-radio',
+      options: ['default', 'inline', 'small']
+    }},
+    icon: { control: {
+      type: 'inline-radio',
+      options: ['', 'fas fa-sync-alt', 'fas fa-save', 'fas fa-plus-circle', 'fas fa-trash']
+    } },
+    disabled: { control: 'boolean' },
+    clicked: { action: 'clicked' }
   },
 } as Meta;
 
-const Template: Story<Button> = (args: Button) => {
+const Template: Story<ButtonComponent> = (args: ButtonComponent) => {
   const returnFunction = ({
-    component: Button,
+    component: ButtonComponent,
     moduleMetadata: {
-      declarations: [Button]
+      declarations: [ButtonComponent]
     },
     props: args,
     template: `
-      <storybook-button
-        [backgroundColor]="backgroundColor"
-        [primary]="primary"
+      <app-button
+        [type]="type"
         [size]="size"
-        (click)="onClick($event)"
+        [icon]="icon"
+        [disabled]="disabled"
+        (clicked)="clicked($event)"
       >
         {{contentProjection}}
-      </storybook-button>`
+      </app-button>`
   });
   return returnFunction;
 }
 
 export const Primary = Template.bind({});
 Primary.args = {
-  primary: true,
+  type: 'primary',
+  size: 'default',
+  disabled: false,
   contentProjection: 'Button',
 };
 
-export const Secondary = Template.bind({});
+/*export const Secondary = Template.bind({});
 Secondary.args = {
   contentProjection: 'Button',
 };
@@ -54,3 +70,4 @@ Small.args = {
   size: 'small',
   contentProjection: 'Button',
 };
+*/
