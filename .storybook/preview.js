@@ -18,7 +18,7 @@ export const globalTypes = {
     description: 'Global theme for components',
     defaultValue: 'white',
     toolbar: {
-      icon: 'circlehollow',
+      icon: 'photo',
       items: ['white', 'gray10', 'gray90', 'gray100'],
     },
   },

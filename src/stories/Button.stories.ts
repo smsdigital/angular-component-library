@@ -1,6 +1,5 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
-// import Button from './button.component';
 import { ButtonComponent } from '../app/components/button/button.component';
 
 export default {
@@ -8,18 +7,24 @@ export default {
   component: ButtonComponent,
   argTypes: {
     contentProjection: { control: 'text' },
-    type: { control: {
-      type: 'inline-radio',
-      options: ['primary', 'secondary', 'tertiary', 'ghost', 'danger']
-    }},
-    size: { control: {
-      type: 'inline-radio',
-      options: ['default', 'inline', 'small']
-    }},
-    icon: { control: {
-      type: 'inline-radio',
-      options: ['', 'fas fa-sync-alt', 'fas fa-save', 'fas fa-plus-circle', 'fas fa-trash']
-    } },
+    type: {
+      control: {
+        type: 'inline-radio',
+        options: ['primary', 'secondary', 'tertiary', 'ghost', 'danger']
+      }
+    },
+    size: {
+      control: {
+        type: 'inline-radio',
+        options: ['default', 'inline', 'small']
+      }
+    },
+    icon: {
+      control: {
+        type: 'inline-radio',
+        options: ['', 'fas fa-sync-alt', 'fas fa-save', 'fas fa-plus-circle', 'fas fa-trash']
+      }
+    },
     disabled: { control: 'boolean' },
     clicked: { action: 'clicked' }
   },
@@ -39,9 +44,7 @@ const Template: Story<ButtonComponent> = (args: ButtonComponent) => {
         [icon]="icon"
         [disabled]="disabled"
         (clicked)="clicked($event)"
-      >
-        {{contentProjection}}
-      </app-button>`
+      >{{contentProjection}}</app-button>`
   });
   return returnFunction;
 }
@@ -53,21 +56,3 @@ Primary.args = {
   disabled: false,
   contentProjection: 'Button',
 };
-
-/*export const Secondary = Template.bind({});
-Secondary.args = {
-  contentProjection: 'Button',
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  contentProjection: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  contentProjection: 'Button',
-};
-*/

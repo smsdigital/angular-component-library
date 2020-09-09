@@ -1,2 +1,4 @@
 node_modules
 coverage
+storybook-static
+documentation.json
