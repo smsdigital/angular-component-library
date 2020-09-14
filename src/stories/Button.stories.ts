@@ -30,27 +30,24 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ButtonComponent> = (args: ButtonComponent) => {
-  const returnFunction = ({
-    component: ButtonComponent,
-    moduleMetadata: {
-      declarations: [ButtonComponent]
-    },
-    props: args,
-    template: `
-      <app-button
-        [type]="type"
-        [size]="size"
-        [icon]="icon"
-        [disabled]="disabled"
-        (clicked)="clicked($event)"
-      >{{contentProjection}}</app-button>`
-  });
-  return returnFunction;
-}
+const template: Story<ButtonComponent> = (params: ButtonComponent) => ({
+  component: ButtonComponent,
+  moduleMetadata: {
+    declarations: [ButtonComponent]
+  },
+  props: params,
+  template: `
+    <app-button
+      [type]="type"
+      [size]="size"
+      [icon]="icon"
+      [disabled]="disabled"
+      (clicked)="clicked($event)"
+    >{{contentProjection}}</app-button>`
+});
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Component = template.bind({});
+Component.args = {
   type: 'primary',
   size: 'default',
   disabled: false,
