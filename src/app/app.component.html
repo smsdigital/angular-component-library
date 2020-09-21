@@ -83,7 +83,11 @@
   </app-button-group>
 </div>
 <div class="example">
-  <app-radiobutton-group [preSelectedOptionValue]="'d'" [options]="[{value: 'm', label: 'male'},{value: 'f', label: 'female'},{value: 'd', label: 'diverse'}]" (optionSelected)="log($event)">Select Gender:</app-radiobutton-group>
+  <app-radiobutton-group [label]="'plz select gender'" [preSelectedOptionValue]="'f'" (optionSelected)="log($event)">
+    <app-radiobutton [disabled]="false" [value]="'m'">Male</app-radiobutton>
+    <app-radiobutton [disabled]="false" [value]="'f'">Female</app-radiobutton>
+    <app-radiobutton [disabled]="false" [value]="'d'">Diverse / Other</app-radiobutton>
+  </app-radiobutton-group>
   <br>
 </div>
 

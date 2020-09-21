@@ -1,39 +1,34 @@
-import { Component, HostBinding, HostListener, Output, EventEmitter, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-radiobutton',
   templateUrl: './radiobutton.component.html',
   styleUrls: ['./radiobutton.component.scss'],
   host: {
-    "[attr.tabindex]": "0",
+    '[attr.tabindex]': '0',
   }
 })
-export class RadiobuttonComponent implements OnInit {
+export class RadiobuttonComponent {
 
   private checked_: boolean;
 
-  @Input('disabled')
+  @Input()
   @HostBinding('class.disabled')
   disabled: boolean;
 
-  @Input('option')
-  option: ICheckboxOption;
+  @Input()
+  value: any;
 
-  @Input('preSelected')
-  preSelected: boolean;
-
-  @Output('stateChanged')
-  stateChanged: EventEmitter<RadiobuttonComponent>;
+  @Output() selected: EventEmitter<RadiobuttonComponent>;
 
   @HostListener('keydown.enter', ['$event'])
   @HostListener('keydown.space', ['$event'])
   @HostListener('click', ['$event'])
   private toggle(event: Event): void {
-    if (!this.disabled) {
+    if (!this.disabled && !this.checked) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      this.checked = true;
-      this.stateChanged.next(this);
+      this.selected.next(this);
     }
   }
 
@@ -47,24 +42,8 @@ export class RadiobuttonComponent implements OnInit {
   }
 
   constructor() {
-    this.checked = false;
     this.disabled = false;
-    this.stateChanged = new EventEmitter<RadiobuttonComponent>();
+    this.selected = new EventEmitter<RadiobuttonComponent>();
   }
 
-  ngOnInit() {
-    this.checkForPreSelection();
-  }
-
-  private checkForPreSelection() {
-    if (this.preSelected === true) {
-      this.checked = true;
-    }
-  }
-
-}
-
-interface ICheckboxOption {
-  value: any;
-  label: string;
 }

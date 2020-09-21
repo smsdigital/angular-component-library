@@ -1,4 +1,15 @@
-import { Component, Input, ViewChildren, Output, EventEmitter, HostBinding } from '@angular/core';
+import {
+  Component,
+  Input, Output,
+  EventEmitter,
+  HostBinding,
+  AfterContentInit,
+  ContentChildren,
+  QueryList,
+  OnDestroy
+} from '@angular/core';
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/operators';
 import { RadiobuttonComponent } from '../radiobutton/radiobutton.component';
 
 @Component({
@@ -6,70 +17,73 @@ import { RadiobuttonComponent } from '../radiobutton/radiobutton.component';
   templateUrl: './radiobutton-group.component.html',
   styleUrls: ['./radiobutton-group.component.scss']
 })
-export class RadiobuttonGroupComponent {
+export class RadiobuttonGroupComponent implements AfterContentInit, OnDestroy {
 
-  private selectedOption_: ICheckboxOption;
+  @ContentChildren(RadiobuttonComponent) radiobuttons: QueryList<RadiobuttonComponent>;
 
-  set selectedOption(value: ICheckboxOption) {
-    if (value !== this.selectedOption_) {
-      this.selectedOption_ = value;
-      this.optionSelected.next(value);
-    }
+  @Input() label: string;
+  @Input() @HostBinding('class.disabled') disabled: boolean;
+  @Input() @HostBinding('class.stackedList') stackedList: boolean;
+  @Input() preSelectedOptionValue: any;
+
+  @Output() optionSelected: EventEmitter<any>;
+
+  private selectedOption_: any;
+  private destroySubject$: Subject<void>;
+
+  set selectedOption(value: any) {
+    this.selectedOption_ = value;
+    this.optionSelected.next(value);
   }
 
-  get selectedOption(): ICheckboxOption {
+  get selectedOption(): any {
     return this.selectedOption_;
   }
 
-  @Input('disabled')
-  @HostBinding('class.disabled')
-  disabled: boolean;
-
-  @ViewChildren('radiobutton')
-  radiobuttons: RadiobuttonComponent[];
-
-  @Output('optionSelected')
-  optionSelected: EventEmitter<ICheckboxOption>;
-
-  @Input('stackedList')
-  @HostBinding('class.stackedList')
-  stackedList: boolean;
-
-  @Input('options')
-  options: ICheckboxOption[];
-
-  @Input('preSelectedOptionValue')
-  preSelectedOptionValue: any;
-
   constructor() {
-    this.options = [];
-    this.stackedList = true;
+    this.stackedList = false;
     this.disabled = false;
-    this.optionSelected = new EventEmitter<ICheckboxOption>();
+    this.destroySubject$ = new Subject();
+    this.optionSelected = new EventEmitter<any>();
   }
 
-  optionClicked(selectedRadiobutton: RadiobuttonComponent): void {
-    this.uncheckOtherRadioboxes(selectedRadiobutton);
-    this.selectedOption = selectedRadiobutton.option;
-  }
-
-  checkForPreSelection(option: ICheckboxOption): boolean {
-    if(this.preSelectedOptionValue !== undefined && this.preSelectedOptionValue === option.value) {
-      return true;
-    }
-    return false;
-  }
-
-  private uncheckOtherRadioboxes(selectedRadiobutton: RadiobuttonComponent): void {
-    for (const radiobutton of this.radiobuttons) {
-      if (radiobutton !== selectedRadiobutton) {
-        radiobutton.checked = false;
+  newRadioButtonSelected(newSelectedRadioButtonComponent: RadiobuttonComponent): void {
+    this.radiobuttons.forEach((radioButtonComponent) => {
+      if (radioButtonComponent === newSelectedRadioButtonComponent) {
+        radioButtonComponent.checked = true;
+      } else {
+        radioButtonComponent.checked = false;
       }
+    });
+    this.selectedOption = newSelectedRadioButtonComponent.value;
+  }
+
+  ngAfterContentInit(): void {
+    this.listenToChildren();
+    this.checkForPreSelection();
+  }
+
+  ngOnDestroy(): void {
+    this.destroySubject$.next();
+  }
+
+  private listenToChildren(): void {
+    this.radiobuttons.forEach((radiobutton) => {
+      radiobutton.selected
+        .pipe(takeUntil(this.destroySubject$))
+        .subscribe(this.newRadioButtonSelected.bind(this));
+    });
+  }
+
+  private checkForPreSelection(): void {
+    if (this.preSelectedOptionValue) {
+      this.radiobuttons.forEach((radioButtonComponent) => {
+        if (radioButtonComponent.value === this.preSelectedOptionValue) {
+          radioButtonComponent.checked = true;
+        } else {
+          radioButtonComponent.checked = false;
+        }
+      });
     }
   }
-}
-
-interface ICheckboxOption {
-  value: any;
-  label: string;
 }

@@ -15,7 +15,7 @@ export class CheckboxComponent implements OnInit, OnDestroy {
   private isInitialized: boolean;
   private childCheckboxes: this[];
 
-  @Output('stateChanged')
+  @Output()
   stateChanged: EventEmitter<CheckboxState>;
 
   @HostBinding('class')
@@ -59,7 +59,7 @@ export class CheckboxComponent implements OnInit, OnDestroy {
     return this.state === 'unchecked';
   }
 
-  @Input('parent')
+  @Input()
   parent: this;
 
   constructor() {
@@ -70,12 +70,12 @@ export class CheckboxComponent implements OnInit, OnDestroy {
     this.stateChanged = new EventEmitter<CheckboxState>();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.isInitialized = true;
     this.registerSelfOnParent();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.unregisterSelfOnParent();
   }
 

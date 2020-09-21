@@ -64,10 +64,7 @@
       "trace"
     ],
     "no-empty": false,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
+    "no-inferrable-types": false,
     "no-non-null-assertion": true,
     "no-redundant-jsdoc": true,
     "no-switch-case-fall-through": true,
@@ -116,13 +113,7 @@
         }
       ]
     },
-    "variable-name": {
-      "options": [
-        "ban-keywords",
-        "check-format",
-        "allow-pascal-case"
-      ]
-    },
+    "variable-name": false,
     "whitespace": {
       "options": [
         "check-branch",
@@ -134,7 +125,7 @@
       ]
     },
     "no-conflicting-lifecycle": true,
-    "no-host-metadata-property": true,
+    "no-host-metadata-property": false,
     "no-input-rename": true,
     "no-inputs-metadata-property": true,
     "no-output-native": true,
