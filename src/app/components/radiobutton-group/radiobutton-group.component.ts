@@ -47,15 +47,11 @@ export class RadiobuttonGroupComponent implements AfterContentInit, OnDestroy {
     this.optionSelected = new EventEmitter<any>();
   }
 
-  newRadioButtonSelected(newSelectedRadioButtonComponent: RadiobuttonComponent): void {
-    this.radiobuttons.forEach((radioButtonComponent) => {
-      if (radioButtonComponent === newSelectedRadioButtonComponent) {
-        radioButtonComponent.checked = true;
-      } else {
-        radioButtonComponent.checked = false;
-      }
+  newRadioButtonSelected(newValue: any): void {
+    this.radiobuttons.forEach((radioButtonComponent: RadiobuttonComponent) => {
+      radioButtonComponent.checked = radioButtonComponent.value === newValue;
     });
-    this.selectedOption = newSelectedRadioButtonComponent.value;
+    this.selectedOption = newValue;
   }
 
   ngAfterContentInit(): void {

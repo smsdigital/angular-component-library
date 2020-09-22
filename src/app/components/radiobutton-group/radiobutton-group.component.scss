@@ -5,15 +5,21 @@
 
     span {
         @include label-01;
-        display: inline-block;
-        margin-bottom: 0.5rem;
+        display: block;
         user-select: none;
-    }
-    
-    app-radiobutton {
         margin-bottom: $spacing-03;
     }
+
+    ::ng-deep app-radiobutton {
+        margin-bottom: $spacing-03;
+        margin-right: $spacing-03;
+    }
+
+    &.stackedList ::ng-deep app-radiobutton {
+        display: grid;
+    }
 }
+
 
 @each $themeName, $theme in $themes {
     .theme-#{$themeName} {

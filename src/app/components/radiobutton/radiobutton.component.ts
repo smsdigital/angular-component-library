@@ -28,7 +28,7 @@ export class RadiobuttonComponent {
     if (!this.disabled && !this.checked) {
       event.preventDefault();
       event.stopImmediatePropagation();
-      this.selected.next(this);
+      this.selected.next(this.value);
     }
   }
 
