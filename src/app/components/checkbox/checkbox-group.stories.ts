@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
+import { hideProperties } from '../../../../.storybook/helper';
 import { CheckboxComponent } from './checkbox.component';
 
 export default {
@@ -32,3 +33,19 @@ const template: Story<CheckboxComponent> = (params: CheckboxComponent) => ({
 });
 
 export const Component = template.bind({});
+
+hideProperties(
+  Component,
+  'childCheckboxes',
+  'isInitialized',
+  'childHasChanged',
+  'ngOnDestroy',
+  'ngOnInit',
+  'notifyParentAboutChanges',
+  'registerChild',
+  'registerSelfOnParent',
+  'setChildrenState',
+  'setOwnState',
+  'unregisterChild',
+  'unregisterSelfOnParent'
+);

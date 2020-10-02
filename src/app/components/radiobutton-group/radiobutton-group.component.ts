@@ -6,7 +6,7 @@ import {
   AfterContentInit,
   ContentChildren,
   QueryList,
-  OnDestroy
+  OnDestroy, OnInit
 } from '@angular/core';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { RadiobuttonComponent } from '../radiobutton/radiobutton.component';
   templateUrl: './radiobutton-group.component.html',
   styleUrls: ['./radiobutton-group.component.scss']
 })
-export class RadiobuttonGroupComponent implements AfterContentInit, OnDestroy {
+export class RadiobuttonGroupComponent implements AfterContentInit, OnDestroy, OnInit {
 
   @ContentChildren(RadiobuttonComponent) radiobuttons: QueryList<RadiobuttonComponent>;
 
@@ -52,6 +52,12 @@ export class RadiobuttonGroupComponent implements AfterContentInit, OnDestroy {
       radioButtonComponent.checked = radioButtonComponent.value === newValue;
     });
     this.selectedOption = newValue;
+  }
+
+  ngOnInit(): void {
+    if (!this.label || this.label === '') {
+      throw {error: 'Radiobutton-Group has received no label input, which is mandatory by the company Styleguide.', element: this};
+    }
   }
 
   ngAfterContentInit(): void {
