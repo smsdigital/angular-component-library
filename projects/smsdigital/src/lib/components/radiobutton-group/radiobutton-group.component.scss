@@ -1,0 +1,38 @@
+@import 'styleguide-variables/styles/variables.scss';
+
+:host {
+    display: inline-block;
+
+    span {
+        @include label-01;
+        display: block;
+        user-select: none;
+        margin-bottom: $spacing-03;
+    }
+
+    ::ng-deep smsdigital-radiobutton {
+        margin-bottom: $spacing-03;
+        margin-right: $spacing-03;
+    }
+
+    &.stackedList ::ng-deep smsdigital-radiobutton {
+        display: grid;
+    }
+}
+
+
+@each $themeName, $theme in $themes {
+    .theme-#{$themeName} {
+        :host {
+            span {
+                color: map-get($theme, text-02);
+            }
+
+            &.disabled {
+                span {
+                    color: map-get($theme, disabled-02);
+                }
+            }
+        }
+    }
+}

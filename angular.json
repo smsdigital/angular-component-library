@@ -48,5 +48,6 @@
         }
       }
     }
-  }
+  },
+  "defaultProject": "smsdigital"
 }
