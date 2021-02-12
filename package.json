@@ -1,6 +1,6 @@
 {
   "name": "angular-component-library",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -8,8 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build_lib": "ng build smsdigital",
-    "npm_pack": "cd dist/smsdigital && npm pack",
+    "build_lib": "ng build acl",
+    "npm_pack": "cd dist/acl && npm pack",
     "package": "npm run build_lib && npm run npm_pack",
     "docs:json": "compodoc -p ./tsconfig.base.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",

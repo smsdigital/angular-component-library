@@ -13,4 +13,4 @@ import { RadiobuttonGroupComponent } from './components/radiobutton-group/radiob
   exports: [ButtonComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class SmsdigitalModule { }
+export class AclModule { }
