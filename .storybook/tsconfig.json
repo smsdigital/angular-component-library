@@ -1,5 +1,5 @@
 {
-  "extends": "../projects/smsdigital/tsconfig.lib.json",
+  "extends": "../projects/acl/tsconfig.lib.json",
   "compilerOptions": {
     "types": [
       "node"

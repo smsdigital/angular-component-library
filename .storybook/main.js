@@ -1,6 +1,6 @@
 module.exports = {
   "stories": [
-    "../projects/smsdigital/src/lib/**/*.stories.@(js|jsx|ts|tsx)"
+    "../projects/acl/src/lib/**/*.stories.@(js|jsx|ts|tsx)"
     //"../stories/**/*.stories.mdx",
     //"../stories/**/*.stories.@(js|jsx|ts|tsx)"
   ],

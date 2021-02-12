@@ -8,10 +8,10 @@
   "files": [],
   "references": [
     {
-      "path": "./projects/smsdigital/tsconfig.lib.json"
+      "path": "./projects/acl/tsconfig.lib.json"
     },
     {
-      "path": "./projects/smsdigital/tsconfig.spec.json"
+      "path": "./projects/acl/tsconfig.spec.json"
     }
 ]
 }
