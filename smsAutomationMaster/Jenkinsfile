@@ -4,6 +4,7 @@ env.stageName = 'production'
 env.stepsMapName = 'stepsMap'
 env.productName = 'SMSdigital'
 env.projectName = 'sms'
+env.buildType = "masterOnly"
 env.serviceName = "${env.JOB_NAME}".split('/')[1]
 env.time1 = System.currentTimeMillis()
 
