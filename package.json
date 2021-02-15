@@ -13,7 +13,8 @@
     "package": "npm run build_lib && npm run npm_pack",
     "docs:json": "compodoc -p ./tsconfig.base.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "build-storybook": "npm run docs:json && build-storybook",
+    "coverage": "ng test --code-coverage --watch=false"
   },
   "private": true,
   "dependencies": {
