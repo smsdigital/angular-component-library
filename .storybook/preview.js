@@ -2,7 +2,7 @@
 import { setCompodocJson } from "@storybook/addon-docs/angular";
 import docJson from "../documentation.json";
 
-import styleguideVariables from 'styleguide-variables/data/styles.json';
+import styleguideVariables from '@smsdigital/styleguide-variables/data/styles.json';
 setCompodocJson(docJson);
 
 

@@ -1,4 +1,4 @@
-@import 'node_modules/styleguide-variables/styles/variables.scss';
+@import 'node_modules/@smsdigital/styleguide-variables/styles/variables.scss';
 
 :host {
     display: inline-grid;
@@ -55,7 +55,7 @@
             span {
                 color: map-get($theme, text-01);
             }
-            
+
             &.disabled {
                 div {
                     border: 1px solid map-get($theme, disabled-02);

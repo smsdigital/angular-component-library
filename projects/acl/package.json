@@ -9,6 +9,6 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "styleguide-variables": "0.1.0"
+    "@smsdigital/styleguide-variables": "0.1.1"
   }
 }

@@ -1,4 +1,4 @@
-@import 'node_modules/styleguide-variables/styles/variables.scss';
+@import 'node_modules/@smsdigital/styleguide-variables/styles/variables.scss';
 
 :host {
     white-space: nowrap;
@@ -49,7 +49,7 @@
                 &:focus {
                     box-shadow: 0 0 0 2px map-get($theme, focus);
                 }
-    
+
                 &:hover {
                     background-color: map-get($theme, hover-primary);
                 }
@@ -57,14 +57,14 @@
                 &:active {
                     background-color: map-get($theme, active-primary);
                 }
-    
+
                 &.disabled {
                     background-color: map-get($theme, disabled-02);
                     color: map-get($theme, disabled-03);
                 }
-    
+
                 i {
-                    color: map-get($theme, icon-03); 
+                    color: map-get($theme, icon-03);
                 }
             }
 
@@ -75,7 +75,7 @@
                 &:focus {
                     box-shadow: 0 0 0 2px map-get($theme, focus);
                 }
-    
+
                 &:hover {
                     background-color: map-get($theme, hover-secondary);
                 }
@@ -83,14 +83,14 @@
                 &:active {
                     background-color: map-get($theme, active-secondary);
                 }
-    
+
                 &.disabled {
                     background-color: map-get($theme, disabled-02);
                     color: map-get($theme, disabled-03);
                 }
-    
+
                 i {
-                    color: map-get($theme, icon-03); 
+                    color: map-get($theme, icon-03);
                 }
             }
 
@@ -107,7 +107,7 @@
                         color: map-get($theme, icon-03);
                     }
                 }
-    
+
                 &:hover:not(.disabled) {
                     color: map-get($theme, text-04);
                     background-color: map-get($theme, hover-tertiary);
@@ -120,15 +120,15 @@
                 &:active {
                     color: map-get($theme, inverse-01);
                 }
-    
+
                 &.disabled {
                     background-color: transparent;
                     color: map-get($theme, disabled-02);
                     border: 1px solid map-get($theme, disabled-02);
                 }
-    
+
                 i {
-                    color: map-get($theme, interactive-03); 
+                    color: map-get($theme, interactive-03);
                 }
             }
 
@@ -138,7 +138,7 @@
                 &:focus:not(.disabled) {
                     box-shadow: 0 0 0 2px map-get($theme, focus);
                 }
-    
+
                 &:hover:not(.disabled) {
                     color: map-get($theme, hover-primary-text);
                     background-color: map-get($theme, hover-ui);
@@ -151,7 +151,7 @@
                 &:active:not(.disabled) {
                     background-color: map-get($theme, active-ui);
                 }
-    
+
                 &.disabled {
                     color: map-get($theme, disabled-02);
 
@@ -159,9 +159,9 @@
                         color: map-get($theme, disabled-02);
                     }
                 }
-    
+
                 i {
-                    color: map-get($theme, link-01); 
+                    color: map-get($theme, link-01);
                 }
             }
 
@@ -172,7 +172,7 @@
                 &:focus {
                     box-shadow: 0 0 0 2px map-get($theme, focus);
                 }
-    
+
                 &:hover {
                     background-color: map-get($theme, hover-danger);
                 }
@@ -180,17 +180,17 @@
                 &:active {
                     background-color: map-get($theme, active-danger);
                 }
-    
+
                 &.disabled {
                     background-color: map-get($theme, disabled-02);
                     color: map-get($theme, disabled-03);
                 }
-    
+
                 i {
-                    color: map-get($theme, icon-03); 
+                    color: map-get($theme, icon-03);
                 }
             }
-            
+
         }
     }
 }
