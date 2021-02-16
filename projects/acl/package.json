@@ -1,6 +1,6 @@
 {
-  "name": "acl",
-  "version": "0.1.1",
+  "name": "@smsdigital/acl",
+  "version": "0.1.2",
   "peerDependencies": {
     "@angular/common": "^10.0.14",
     "@angular/core": "^10.0.14"
